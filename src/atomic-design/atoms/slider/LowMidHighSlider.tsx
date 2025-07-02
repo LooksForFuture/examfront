@@ -1,0 +1,106 @@
+import { useEffect, useRef } from "react";
+
+interface LowMidHighSliderProps {
+  defaultValue: "low" | "medium" | "high";
+}
+
+const LowMidHighSlider = ({ defaultValue }: LowMidHighSliderProps) => {
+  const id = Math.floor(Math.random() * 10000);
+  const sliderRef = useRef(null);
+  const _value = {
+    low: 0,
+    medium: 1,
+    high: 2,
+  };
+
+  useEffect(() => {
+    const sliderElement = document.getElementById(`slider-pips-${id}`);
+
+    // @ts-ignore
+    if (sliderElement && !sliderElement.noUiSlider) {
+      try {
+        // @ts-ignore
+        noUiSlider.create(sliderElement, {
+          start: [_value[defaultValue]], // Starting at "mid"
+          behaviour: "tap-drag",
+          step: 1, // Step between each value
+          tooltips: false,
+          connect: "lower",
+          orientation: "vertical",
+          range: {
+            min: 0,
+            max: 2,
+          },
+          direction: "rtl", // Reverse direction to flip the values
+          pips: {
+            mode: "values",
+            values: [0, 1, 2], // "low", "mid", "high"
+            density: 10,
+            format: {
+              to: function (value: number) {
+                switch (value) {
+                  case 0:
+                    return "Low";
+                  case 1:
+                    return "Mid";
+                  case 2:
+                    return "High";
+                  default:
+                    return value;
+                }
+              },
+            },
+          },
+        });
+
+        // @ts-ignore
+        sliderRef.current = sliderElement.noUiSlider;
+
+        // تغییر رنگ بر اساس مقدار انتخاب‌شده
+        // @ts-ignore
+        sliderRef.current.on("update", function (values, handle) {
+          const value = parseInt(values[handle]);
+          // @ts-ignore
+          switch (value) {
+            case 0:
+              sliderElement.classList.remove("noUi-warning", "noUi-danger");
+              sliderElement.classList.add("noUi-info");
+              break;
+            case 1:
+              sliderElement.classList.remove("noUi-info", "noUi-danger");
+              sliderElement.classList.add("noUi-warning");
+              break;
+            case 2:
+              sliderElement.classList.remove("noUi-info", "noUi-warning");
+              sliderElement.classList.add("noUi-danger");
+              break;
+            default:
+              sliderElement.style.backgroundColor = ""; // پیش‌فرض
+              break;
+          }
+        });
+      } catch (error) {
+        console.error("nouislider error: ", error);
+      }
+    }
+  }, []);
+
+  return (
+    <div
+    className="pb-4 pt-4"
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <div
+        className="noUi-info"
+        style={{ height: 100 }}
+        id={`slider-pips-${id}`}
+      ></div>
+    </div>
+  );
+};
+
+export default LowMidHighSlider;

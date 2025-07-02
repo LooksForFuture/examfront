@@ -1,0 +1,43 @@
+.root {
+  position: relative;
+  cursor: pointer;
+}
+.coin {
+  width: 65px;
+}
+
+.badge {
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  color: #fff;
+  text-shadow: 0 0 5px #ffa000;
+}
+
+.v5 {
+  background-color: #ffecb3;
+}
+.v10 {
+  background-color: #ffe082;
+}
+.v15 {
+  background-color: #ffd54f;
+}
+.v20 {
+  background-color: #ffca28;
+}
+.v25 {
+  background-color: #ffc107;
+}
+.v50 {
+  background-color: #ffb300;
+}
+.v100 {
+  background-color: #ffa000;
+}

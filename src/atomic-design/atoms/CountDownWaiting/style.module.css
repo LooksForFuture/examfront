@@ -1,0 +1,20 @@
+.root {
+  position: fixed;
+  top: 0;
+  background: #00000042;
+  z-index: 100;
+  width: 100%;
+  left: 0;
+  right: 0;
+  height: 100%;
+}
+
+.number {
+  font-size: 50px;
+}
+
+.container {
+  background: #fff;
+  border-radius: 1000px;
+  padding: 10px;
+}
