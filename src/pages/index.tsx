@@ -11,7 +11,9 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { Question, TestService } from "types";
 import singleSocket from "singleSocket";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setAuth } from "../redux/slice/AuthSlice";
+import { setProfile } from "../redux/slice/ProfileSlice";
 import { RootState } from "store";
 
 const Home = () => {
@@ -28,6 +30,7 @@ const Home = () => {
   const { mutate, data, isPending } = useMutation<any>({
     mutationFn: testGetActiveQuestionRead,
   });
+  const dispatch = useDispatch();
 
   useEffect(() => {
     singleSocket.send({type:"auth", message:token});
@@ -37,7 +40,12 @@ const Home = () => {
       console.log(msg)
       if (msg.type === "question_started") {
         setActiveQuestion(msg.message);
-        clearInterval(interval.current);
+      }
+      
+      else if (msg.type === "error" && msg.message === "auth") {
+        dispatch(setAuth({ access: "", refresh: "" }));
+        dispatch(setProfile(null));
+        navigate("/login");
       }
     });
 
