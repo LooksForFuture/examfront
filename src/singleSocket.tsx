@@ -66,5 +66,5 @@ class WebSocketManager {
   }
 }
 
-const singleSocket = new WebSocketManager('ws://185.8.174.7/ws/socket-server/');
+const singleSocket = new WebSocketManager('wss://pyteacher.ir/ws/socket-server/');
 export default singleSocket;
