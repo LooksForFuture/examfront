@@ -20,7 +20,7 @@ export type OpenAPIConfig = {
 };
 
 export const OpenAPI: OpenAPIConfig = {
-    BASE: 'https://pyteacher.ir/api',
+    BASE: 'https://pyteacher.ir/api/',
     VERSION: '1',
     WITH_CREDENTIALS: false,
     CREDENTIALS: 'include',
