@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "pages";
+import Home from "pages/index";
+import ExamRoom from "pages/ExamRoom";
 import Login from "pages/Login";
 import ManageTest from "pages/ManageTest";
 import Congratulation from "pages/Congratulation";
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/exam/:examId",
+    element: <ExamRoom />
   },
   {
     path: "/login",
