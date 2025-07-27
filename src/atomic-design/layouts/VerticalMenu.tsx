@@ -784,7 +784,7 @@ const VerticalMenuLayout: React.FC<VerticalMenuLayoutProps> = ({
                           <li>
                             <Link
                               className="dropdown-item"
-                              to="/my-profile"
+                              to="/profile"
                             >
                               <i className="bx bx-user me-2"></i>
                               <span className="align-middle">پروفایل من</span>

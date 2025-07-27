@@ -5,7 +5,7 @@ dotenv.config();
 
 const username = process.env.REACT_APP_API_USERNAME;
 const password = process.env.REACT_APP_API_PASSWORD;
-const domain = process.env.REACT_APP_DOMAIN;
+const domain = process.env.REACT_APP_BACKEND_BASE_URL;
 
 async function getJwtToken() {
   const fetch = (await import("node-fetch")).default;
@@ -31,10 +31,10 @@ async function getJwtToken() {
 async function generateTypes() {
   try {
     const token = await getJwtToken();
-    const REACT_APP_DOMAIN = process.env.REACT_APP_DOMAIN;
+    const REACT_APP_BACKEND_BASE_URL = process.env.REACT_APP_BACKEND_BASE_URL;
     const curlCommand = `
             curl -H "Authorization: Bearer ${token}" \
-            ${REACT_APP_DOMAIN}/api/swagger/?format=openapi \
+            ${REACT_APP_BACKEND_BASE_URL}/api/swagger/?format=openapi \
             -o swagger.json && \
             npx openapi-typescript-codegen \
             --input ./swagger.json \
