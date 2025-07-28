@@ -1,17 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import WithoutVerticalMenuLayout from "atomic-design/layouts/WithourVerticalMenu";
 import TestCard from "atomic-design/modules/TestCard";
+import TestTabs from "atomic-design/organisms/TestTabs";
 import { useSelector } from "react-redux";
 import { RootState } from "store";
 import { TestService } from "types";
 
 const MyProfile = () => {
   const { profile } = useSelector((state: RootState) => state.profile);
-  const { testProfileMeRead } = TestService
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['testProfileMeRead'],
-    queryFn: testProfileMeRead
-  })
 
   return (
     <WithoutVerticalMenuLayout>
@@ -56,21 +52,8 @@ const MyProfile = () => {
           </div>
         </div>
 
-        {data?.test_result_list && data?.test_result_list?.length > 0 ? (
-          <div className="row">
-            <div className="col-md-12">
-              <h4>تاریخچه آزمون های شرکت کرده</h4>
-            </div>
-            {/* @ts-ignore */}
-            {data?.test_result_list?.map((result: any, index: number) => (
-              <div className="col-md-12">
-                <div className="col-md-4 mb-4">
-                  <TestCard test={result.test} />
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : null}
+        <TestTabs />
+
       </div>
     </WithoutVerticalMenuLayout>
   );

@@ -16,6 +16,8 @@ export type { TokenVerify } from './models/TokenVerify';
 export type { User } from './models/User';
 export type { UserAnswer } from './models/UserAnswer';
 export type { UserProfile } from './models/UserProfile';
+export type { UserTestResult } from './models/UserTestResult';
+export type { UserTestResultUser } from './models/UserTestResultUser';
 
 export { NotificationService } from './services/NotificationService';
 export { TestService } from './services/TestService';
