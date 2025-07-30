@@ -1,13 +1,41 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
+import singleSocket from "singleSocket";
 import { useQuery } from "@tanstack/react-query";
 import WithoutVerticalMenuLayout from "atomic-design/layouts/WithourVerticalMenu";
 import TestCard from "atomic-design/modules/TestCard";
 import TestTabs from "atomic-design/organisms/TestTabs";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "store";
 import { TestService } from "types";
+import { setAuth } from "../redux/slice/AuthSlice";
+import { setProfile } from "../redux/slice/ProfileSlice";
 
 const MyProfile = () => {
   const { profile } = useSelector((state: RootState) => state.profile);
+  const token = useSelector((state: RootState) => state.auth.access);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    singleSocket.send({ type: "auth", message: token });
+
+    // Subscribe on mount
+    const unsubscribe = singleSocket.subscribe((msg) => {
+      console.log(msg)
+
+      if (msg.type === "error" && msg.message === "auth") {
+        dispatch(setAuth({ access: "", refresh: "" }));
+        dispatch(setProfile(null));
+        navigate("/login");
+      }
+    });
+
+    // Cleanup on unmount
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   return (
     <WithoutVerticalMenuLayout>

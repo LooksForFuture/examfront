@@ -21,7 +21,7 @@ const WithoutVerticalMenuLayout: React.FC<WithoutVerticalMenuLayoutProps> = ({ c
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const notificationRefetchInterval = useRef<any>();
-  const timeIsUpdate = useSystemTimeAccuracy();
+  //const timeIsUpdate = useSystemTimeAccuracy();
 
   const { notificationNotificationList } = NotificationService;
   const { mutate: fetchNotifications, data: notificationsData } = useMutation<Array<MyNotification>>({
@@ -153,7 +153,7 @@ const WithoutVerticalMenuLayout: React.FC<WithoutVerticalMenuLayoutProps> = ({ c
                         <div className="dropdown-divider"></div>
                       </li>
                       <li>
-                        <Link className="dropdown-item" to="/profile">
+                        <Link className="dropdown-item" to="/">
                           <i className="bx bx-user me-2"></i>
                           <span className="align-middle">پروفایل من</span>
                         </Link>
@@ -258,11 +258,11 @@ const WithoutVerticalMenuLayout: React.FC<WithoutVerticalMenuLayoutProps> = ({ c
 
           <div className="content-wrapper">
             <div className="container-xxl flex-grow-1 container-p-y pt-4 mt-5">
-              {timeIsUpdate === false && (
+              {/*timeIsUpdate === false && (
                 <div className="alert alert-danger" role="alert">
                   زمان سیستم شما به روز نیست. لطفا زمان سیستم خود را به روز کنید!
                 </div>
-              )}
+              )*/}
               {children}
             </div>
 

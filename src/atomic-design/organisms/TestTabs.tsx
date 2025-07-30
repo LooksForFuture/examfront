@@ -11,7 +11,7 @@ const TestResults = ({ data }: any) => {
         </div>
         {/* @ts-ignore */}
         {data?.test_result_list.filter(result => result.test.status === 'finished')?.map((result: any, index: number) => (
-          <div className="col-md-12">
+          <div key={index} className="col-md-12">
             <div className="col-md-4 mb-4">
               <TestCard test={result.test} />
             </div>
@@ -27,7 +27,7 @@ const Tests = ({ data }: any) => {
     {data?.test_result_list && data?.test_result_list?.length > 0 ? (
       <div className="row">
         <div className="col-md-12">
-          <h4>تاریخچه آزمون های شرکت کرده</h4>
+          <h4>آزمون های فعال</h4>
         </div>
         {/* @ts-ignore */}
         {data?.test_result_list.filter(result => result.test.status !== 'finished')?.map((result: any, index: number) => (

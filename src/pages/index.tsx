@@ -54,7 +54,7 @@ const WaitingRoom = () => {
     <WithoutVerticalMenuLayout>
       <div className="row mt-2 mb-5">
         {data?.map(test => <>
-          <div className="col-md-4 mb-4">
+          <div key={test.id} className="col-md-4 mb-4">
             <TestCard test={test} />
           </div>
         </>)}

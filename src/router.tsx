@@ -7,7 +7,6 @@ import Congratulation from "pages/Congratulation";
 import FAQ from "pages/FAQ";
 import Profile from "pages/MyProfile";
 import ContactUs from "pages/ContactUs";
-import SocketTest from "pages/SocketTest"
 import Page404 from "pages/page404";
 import ExamResult from "pages/ExamResult";
 
@@ -45,12 +44,8 @@ const router = createBrowserRouter([
     element: <FAQ />
   },
   {
-    path:"/ws",
-    element: <SocketTest />
-  },
-  {
     path: "/",
-    element: <Home />,
+    element: <Profile />,
   },
   {
     path: "*",
