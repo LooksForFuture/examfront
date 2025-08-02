@@ -18,7 +18,12 @@ const TestResults = ({ data }: any) => {
           </div>
         ))}
       </div>
-    ) : null}
+    ) :
+    <div className="row">
+        <div className="col-md-12">
+          <h4>شما هنوز در آزمونی شرکت نکرده اید</h4>
+        </div>
+    </div>}
   </>
 }
 
@@ -38,7 +43,12 @@ const Tests = ({ data }: any) => {
           </div>
         ))}
       </div>
-    ) : null}
+    ) :
+    <div className="row">
+        <div className="col-md-12">
+          <h4>آزمون فعالی وجود ندارد</h4>
+        </div>
+      </div>}
   </>
 }
 
