@@ -18,7 +18,7 @@ const ExamResult = () => {
       }
       throw new Error("test id is required"); // خطا برای زمانی که testId وجود ندارد
     },
-  }); 
+  });
 
   if (isLoading) return <p>loading ...</p>;
 
@@ -26,7 +26,9 @@ const ExamResult = () => {
     <>
       <WithoutVerticalMenuLayout>
         <Container>
-          <UserRank testResult={data} />
+          <div className="card">
+            <UserRank testResult={data} />
+          </div>
         </Container>
       </WithoutVerticalMenuLayout>
     </>
