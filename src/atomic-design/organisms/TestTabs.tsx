@@ -1,54 +1,44 @@
 import { useQuery } from "@tanstack/react-query"
 import TestCard from "atomic-design/modules/TestCard"
-import { TestService } from "types"
+import { ApiError, ManagerTest, MyUserTestResultTest, TestService, UserProfile } from "types"
 
-const TestResults = ({ data }: any) => {
+type TestResultsPropsType = {
+  data: UserProfile | undefined
+}
+
+const TestResults = ({ data }: TestResultsPropsType) => {
+  const finishedTests = data?.test_result_list?.filter(result => result.test?.status === MyUserTestResultTest.status.FINISHED)
+
   return <>
-    {data?.test_result_list && data?.test_result_list?.length > 0 ? (
+    {data?.test_result_list && finishedTests && finishedTests?.length > 0 ? (
       <div className="row">
-        <div className="col-md-12">
-          <h4>تاریخچه آزمون های شرکت کرده</h4>
-        </div>
-        {/* @ts-ignore */}
-        {data?.test_result_list.filter(result => result.test.status === 'finished')?.map((result: any, index: number) => (
-          <div key={index} className="col-md-12">
-            <div className="col-md-4 mb-4">
-              <TestCard test={result.test} />
-            </div>
+        {finishedTests?.map((result: any, index: number) => (
+          <div key={index} className="col-md-4 mb-4">
+            <TestCard test={result.test} />
           </div>
         ))}
       </div>
-    ) :
-    <div className="row">
-        <div className="col-md-12">
-          <h4>شما هنوز در آزمونی شرکت نکرده اید</h4>
-        </div>
-    </div>}
+    ) : <h6 className="mt-2 text-center">آزمون فعالی وجود ندارد</h6>
+    }
   </>
 }
 
-const Tests = ({ data }: any) => {
+type TestsPropsType = {
+  data: Array<ManagerTest> | undefined
+}
+
+const Tests = ({ data }: TestsPropsType) => {
   return <>
-    {data?.test_result_list && data?.test_result_list?.length > 0 ? (
+    {data && data?.length > 0 ? (
       <div className="row">
-        <div className="col-md-12">
-          <h4>آزمون های فعال</h4>
-        </div>
-        {/* @ts-ignore */}
-        {data?.test_result_list.filter(result => result.test.status !== 'finished')?.map((result: any, index: number) => (
-          <div className="col-md-12" key={index}>
-            <div className="col-md-4 mb-4">
-              <TestCard test={result.test} />
-            </div>
+        {data?.map((result, index) => (
+          <div key={index} className="col-md-4 mb-4">
+            <TestCard test={result} />
           </div>
         ))}
       </div>
-    ) :
-    <div className="row">
-        <div className="col-md-12">
-          <h4>آزمون فعالی وجود ندارد</h4>
-        </div>
-      </div>}
+    ) : <h6 className="mt-2 text-center">آزمون فعالی وجود ندارد</h6>
+    }
   </>
 }
 
@@ -59,6 +49,14 @@ const TestTabs = () => {
     queryFn: testProfileMeRead
   })
 
+  const { testTestList } = TestService
+  const { data: dataTestList, isLoading: isLoadingTestList, error: errorTestList } = useQuery<any, ApiError, Array<ManagerTest>>({
+    queryKey: ['testTestList'],
+    queryFn: ({ queryKey }) => testTestList('active')
+  })
+  
+  // TODO: Avoid this
+  // dataTestList[0].question_set
 
   return <div className="nav-align-top mb-4">
     <ul className="nav nav-pills mb-3" role="tablist">
@@ -75,7 +73,7 @@ const TestTabs = () => {
     </ul>
     <div className="tab-content">
       <div className="tab-pane fade active show" id="navs-pills-top-home" role="tabpanel">
-        <Tests data={data} />
+        <Tests data={dataTestList} />
       </div>
       <div className="tab-pane fade" id="navs-pills-top-profile" role="tabpanel">
         <TestResults data={data} />

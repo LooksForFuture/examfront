@@ -19,7 +19,7 @@ const TestCard = ({ test }: TestCardProps) => {
 
   return <div className="card">
     <div className="card-body">
-      <div className="h5">{test.title}</div>
+      <div className="h5">{test?.title}</div>
       {getButton()}
     </div>
   </div>

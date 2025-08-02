@@ -9,6 +9,8 @@ export type { OpenAPIConfig } from './core/OpenAPI';
 
 export { ManagerTest } from './models/ManagerTest';
 export type { MyNotification } from './models/MyNotification';
+export type { MyUserTestResult } from './models/MyUserTestResult';
+export { MyUserTestResultTest } from './models/MyUserTestResultTest';
 export type { Question } from './models/Question';
 export type { TokenObtainPair } from './models/TokenObtainPair';
 export type { TokenRefresh } from './models/TokenRefresh';
