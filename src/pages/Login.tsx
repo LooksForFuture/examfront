@@ -39,7 +39,7 @@ const LoginPage = () => {
         redirect: "follow",
       };
 
-      const DOMAIN = process.env.REACT_APP_DOMAIN;
+      const DOMAIN = process.env.REACT_APP_BACKEND_BASE_URL;
 
       // @ts-ignore
       const response = await fetch(DOMAIN + "/api/token/", requestOptions);

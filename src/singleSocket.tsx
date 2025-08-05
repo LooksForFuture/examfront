@@ -66,5 +66,6 @@ class WebSocketManager {
   }
 }
 
-const singleSocket = new WebSocketManager('wss://pyteacher.ir/ws/socket-server/');
+console.log(process.env)
+const singleSocket = new WebSocketManager(`${process.env.REACT_APP_BACKEND_BASE_WS}/ws/socket-server/`);
 export default singleSocket;

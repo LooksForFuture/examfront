@@ -1,13 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "pages";
+import Home from "pages/index";
+import ExamRoom from "pages/ExamRoom";
 import Login from "pages/Login";
 import ManageTest from "pages/ManageTest";
 import Congratulation from "pages/Congratulation";
 import FAQ from "pages/FAQ";
-import MyProfile from "pages/MyProfile";
+import Profile from "pages/MyProfile";
 import ContactUs from "pages/ContactUs";
-import SocketTest from "pages/SocketTest"
 import Page404 from "pages/page404";
+import ExamResult from "pages/ExamResult";
 
 const router = createBrowserRouter([
   {
@@ -19,12 +20,16 @@ const router = createBrowserRouter([
     element: <ContactUs />
   },
   {
-    path: "/my-profile",
-    element: <MyProfile />
+    path: "/profile",
+    element: <Profile />
   },
   {
-    path: "/",
-    element: <Home />,
+    path: "/exam/:examId",
+    element: <ExamRoom />
+  },
+  {
+    path: "/exam/:testId/result",
+    element: <ExamResult />
   },
   {
     path: "/login",
@@ -39,8 +44,8 @@ const router = createBrowserRouter([
     element: <FAQ />
   },
   {
-    path:"/ws",
-    element: <SocketTest />
+    path: "/",
+    element: <Profile />,
   },
   {
     path: "*",

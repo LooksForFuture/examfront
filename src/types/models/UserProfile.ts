@@ -2,6 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { MyUserTestResult } from './MyUserTestResult';
 export type UserProfile = {
     first_name?: string;
     last_name?: string;
@@ -11,6 +12,6 @@ export type UserProfile = {
     username: string;
     readonly is_online?: string;
     active_test_score: number;
-    readonly test_result_list?: string;
+    readonly test_result_list?: Array<MyUserTestResult>;
 };
 

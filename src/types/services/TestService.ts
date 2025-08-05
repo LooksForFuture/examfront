@@ -7,6 +7,7 @@ import type { Question } from '../models/Question';
 import type { User } from '../models/User';
 import type { UserAnswer } from '../models/UserAnswer';
 import type { UserProfile } from '../models/UserProfile';
+import type { UserTestResult } from '../models/UserTestResult';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
@@ -32,18 +33,22 @@ export class TestService {
         });
     }
     /**
+     * Retrieve the results for a specific test, ordered by score
      * @param testId
-     * @returns any
+     * @returns UserTestResult
      * @throws ApiError
      */
     public static testResultRead(
         testId: string,
-    ): CancelablePromise<any> {
+    ): CancelablePromise<Array<UserTestResult>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/test/result/{test_id}/',
             path: {
                 'test_id': testId,
+            },
+            errors: {
+                404: `Test not found`,
             },
         });
     }

@@ -1,10 +1,41 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
+import singleSocket from "singleSocket";
+import { useQuery } from "@tanstack/react-query";
 import WithoutVerticalMenuLayout from "atomic-design/layouts/WithourVerticalMenu";
-import { useSelector } from "react-redux";
+import TestCard from "atomic-design/modules/TestCard";
+import TestTabs from "atomic-design/organisms/TestTabs";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "store";
+import { TestService } from "types";
+import { setAuth } from "../redux/slice/AuthSlice";
+import { setProfile } from "../redux/slice/ProfileSlice";
 
 const MyProfile = () => {
   const { profile } = useSelector((state: RootState) => state.profile);
-  console.log("AA", profile);
+  const token = useSelector((state: RootState) => state.auth.access);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    singleSocket.send({ type: "auth", message: token });
+
+    // Subscribe on mount
+    const unsubscribe = singleSocket.subscribe((msg) => {
+      console.log(msg)
+
+      if (msg.type === "error" && msg.message === "auth") {
+        dispatch(setAuth({ access: "", refresh: "" }));
+        dispatch(setProfile(null));
+        navigate("/login");
+      }
+    });
+
+    // Cleanup on unmount
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   return (
     <WithoutVerticalMenuLayout>
@@ -49,24 +80,8 @@ const MyProfile = () => {
           </div>
         </div>
 
-        {profile?.test_result_list && profile?.test_result_list?.length > 0 ? (
-          <div className="row">
-            <div className="col-md-12">
-              <h4>آزمون‌ها</h4>
-            </div>
-            {/* @ts-ignore */}
-            {profile?.test_result_list?.map((result: any, index: number) => (
-              <div className="col-md-12">
-                <div className="card">
-                  <div className="card-body">
-                    <h5>{result.test.title}</h5>
-                    {result.score}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : null}
+        <TestTabs />
+
       </div>
     </WithoutVerticalMenuLayout>
   );

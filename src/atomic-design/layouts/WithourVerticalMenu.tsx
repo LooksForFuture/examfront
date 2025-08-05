@@ -21,7 +21,7 @@ const WithoutVerticalMenuLayout: React.FC<WithoutVerticalMenuLayoutProps> = ({ c
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const notificationRefetchInterval = useRef<any>();
-  const timeIsUpdate = useSystemTimeAccuracy();
+  //const timeIsUpdate = useSystemTimeAccuracy();
 
   const { notificationNotificationList } = NotificationService;
   const { mutate: fetchNotifications, data: notificationsData } = useMutation<Array<MyNotification>>({
@@ -127,16 +127,59 @@ const WithoutVerticalMenuLayout: React.FC<WithoutVerticalMenuLayoutProps> = ({ c
                     </ul>
                   </li>
 
-                  <li className="nav-item me-2">
-                    <div className="nav-link">
-                      <i className="tf-icons navbar-icon bx bx-user"></i>
-                      {profile?.username}
-                    </div>
-                  </li>
-                  <li className="nav-item">
-                    <Clickable className="nav-link" onClick={handleLogout}>
-                      <i className="tf-icons navbar-icon bx bx-lock-open-alt"></i> خروج
-                    </Clickable>
+                  <li className="nav-item navbar-dropdown dropdown-user dropdown">
+                    <a className="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false">
+                      <div className="avatar avatar-online">
+                        <img src="../../assets/img/avatars/1.png" alt="" className="rounded-circle" />
+                      </div>
+                    </a>
+                    <ul className="dropdown-menu dropdown-menu-end">
+                      <li>
+                        <a className="dropdown-item" href="pages-account-settings-account.html">
+                          <div className="d-flex align-items-center">
+                            <div className="flex-shrink-0 me-3">
+                              <div className="avatar avatar-online">
+                                <img src="../../assets/img/avatars/1.png" alt="" className="rounded-circle" />
+                              </div>
+                            </div>
+                            <div className="flex-grow-1">
+                              <span className="fw-semibold d-block">{profile?.username}</span>
+                              <small>JOB TITLE</small>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                      <li>
+                        <div className="dropdown-divider"></div>
+                      </li>
+                      <li>
+                        <Link className="dropdown-item" to="/">
+                          <i className="bx bx-user me-2"></i>
+                          <span className="align-middle">پروفایل من</span>
+                        </Link>
+                      </li>
+                      <li>
+                        <a className="dropdown-item" href="pages-help-center-landing.html">
+                          <i className="bx bx-support me-2"></i>
+                          <span className="align-middle">پشتیبانی</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a className="dropdown-item" href="pages-faq.html">
+                          <i className="bx bx-help-circle me-2"></i>
+                          <span className="align-middle">سوالات متداول</span>
+                        </a>
+                      </li>
+                      <li>
+                        <div className="dropdown-divider"></div>
+                      </li>
+                      <li>
+                        <Clickable className="dropdown-item" onClick={handleLogout}>
+                          <i className="bx bx-power-off me-2"></i>
+                          <span className="align-middle">خروج</span>
+                        </Clickable>
+                      </li>
+                    </ul>
                   </li>
                   <li className="nav-item navbar-dropdown dropdown-user dropdown">
                     {/* <a
@@ -167,7 +210,7 @@ const WithoutVerticalMenuLayout: React.FC<WithoutVerticalMenuLayoutProps> = ({ c
                         <div className="dropdown-divider"></div>
                       </li>
                       <li>
-                        <Link className="dropdown-item" to="/my-profile">
+                        <Link className="dropdown-item" to="/profile">
                           <i className="bx bx-user me-2"></i>
                           <span className="align-middle">پروفایل من</span>
                         </Link>
@@ -215,11 +258,11 @@ const WithoutVerticalMenuLayout: React.FC<WithoutVerticalMenuLayoutProps> = ({ c
 
           <div className="content-wrapper">
             <div className="container-xxl flex-grow-1 container-p-y pt-4 mt-5">
-              {timeIsUpdate === false && (
+              {/*timeIsUpdate === false && (
                 <div className="alert alert-danger" role="alert">
                   زمان سیستم شما به روز نیست. لطفا زمان سیستم خود را به روز کنید!
                 </div>
-              )}
+              )*/}
               {children}
             </div>
 
