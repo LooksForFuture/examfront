@@ -41,6 +41,10 @@ const WaitingRoom = () => {
         dispatch(setProfile(null));
         navigate("/login");
       }
+
+      else if (msg.type === "finished" && msg.message === "finished") {
+	navigate("/");
+      }
     });
 
     // Cleanup on unmount
