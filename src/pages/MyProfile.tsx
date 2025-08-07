@@ -66,7 +66,7 @@ const MyProfile = () => {
                           <i className="bx bx-pen"></i> تعداد آزمون های شرکت کرده
                         </li>
                         <li className="list-inline-item fw-semibold">
-                          <i className="bx bx-map"></i> جمموع امتیاز شما
+                          <i className="bx bx-map"></i> مجموع امتیاز شما
                         </li>
                         <li className="list-inline-item fw-semibold">
                           <i className="bx bx-calendar-alt"></i> بهترین نتیجه شما تا کنون
