@@ -43,7 +43,7 @@ const WaitingRoom = () => {
       }
 
       else if (msg.type === "finished" && msg.message === "finished") {
-	navigate("/");
+	      navigate("/exam/"+examId+"/result");
       }
     });
 

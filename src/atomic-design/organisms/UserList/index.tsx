@@ -13,6 +13,8 @@ const UserList = () => {
     // Subscribe on mount
     const unsubscribe = singleSocket.subscribe((msg) => {
       if (msg.type == "active_users") {
+        const received:Array<User> = msg.message;
+        received.sort((a:User, b:User) => b.active_test_score - a.active_test_score);
         setUsers(msg.message);
       }
     });
