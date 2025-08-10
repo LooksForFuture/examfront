@@ -72,7 +72,7 @@ const UserItem = memo(({ user }: { user: User }) => (
           <small className="ms-1">{user.is_online ? "آنلاین" : "آفلاین"}</small>
         </div>
         <div className={`add-btn d-flex flex-column align-items-center ${styles.score}`}>
-          {badge}
+          <i className="bx bx-award h3 mb-0"></i>
           <span>{_(user.active_test_score.toString())}</span>
         </div>
       </div>
