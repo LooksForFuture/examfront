@@ -33,19 +33,6 @@ const UserList = () => {
   // @ts-ignore
   .map((score: number) => score || 0); // اطمینان از اینکه اگر مقدار undefined باشد، صفر قرار گیرد
 
-  const showBadge = (result: number) => {
-    switch (result) {
-      case score_1:
-        return <img src="../../assets/img/badge/1.png" style={{width: '1.7em'}} />
-      case score_2:
-        return <img src="../../assets/img/badge/2.png" style={{width: '1.7em'}} />
-      case score_3:
-        return <img src="../../assets/img/badge/3.png" style={{width: '1.7em'}} />
-      default:
-        return <i className="bx bx-award h3 mb-0"></i>
-    }
-  }
-
   /* useEffect(() => {
     interval.current = setInterval(async () => {
       try {
@@ -64,13 +51,13 @@ const UserList = () => {
   return (
     <div className="list-group">
       {users.map((user: User, index: number) => (
-        <UserItem key={index} user={user} badge={showBadge(user.active_test_score)} />
+        <UserItem key={index} user={user} />
       ))}
     </div>
   );
 };
 
-const UserItem = memo(({ user, badge }: { user: User, badge:JSX.Element }) => (
+const UserItem = memo(({ user }: { user: User }) => (
   <div className="list-group-item list-group-item-action d-flex align-items-center cursor-pointer">
     {/* <img src="../../assets/img/avatars/2.png" alt="User Image" className="rounded-circle me-3 w-px-50" /> */}
     <div className="avatar avatar-md me-2">
