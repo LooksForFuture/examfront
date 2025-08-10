@@ -73,7 +73,7 @@ const UserItem = memo(({ user }: { user: User }) => (
         </div>
         <div className={`add-btn d-flex flex-column align-items-center ${styles.score}`}>
           <i className="bx bx-award h3 mb-0"></i>
-          <span>{_(user.active_test_score.toString())}</span>
+          <span>{_(user.active_test_score.toFixed(2).toString())}</span>
         </div>
       </div>
     </div>
