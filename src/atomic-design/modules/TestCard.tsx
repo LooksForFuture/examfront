@@ -6,7 +6,6 @@ type TestCardProps = {
 }
 
 const TestCard = ({ test }: TestCardProps) => {
-
   const getButton = () => {
     if (test.status === ManagerTest.status.ACTIVE) {
       return <Link to={`/exam/${test.id}`} className="btn btn-success w-100">ورود به آزمون</Link>
@@ -18,8 +17,9 @@ const TestCard = ({ test }: TestCardProps) => {
   }
 
   return <div className="card">
-    <div className="card-body">
-      <div className="h5">{test?.title}</div>
+    <div className="card-body text-center">
+      <div className="h5 text-center">{test?.title}</div>
+      <img src={test?.image?.toString()} style={{maxWidth:"100%", marginBottom:"2%"}} />
       {getButton()}
     </div>
   </div>

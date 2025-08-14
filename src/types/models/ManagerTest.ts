@@ -6,6 +6,7 @@ export type ManagerTest = {
     readonly id?: number;
     title?: string | null;
     status?: ManagerTest.status | null;
+    readonly image?: string;
     readonly question_set?: string;
 };
 export namespace ManagerTest {

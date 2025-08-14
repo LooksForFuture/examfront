@@ -6,6 +6,7 @@ export type MyUserTestResultTest = {
     readonly id?: number;
     title?: string | null;
     status?: MyUserTestResultTest.status | null;
+    readonly image?: string;
 };
 export namespace MyUserTestResultTest {
     export enum status {
