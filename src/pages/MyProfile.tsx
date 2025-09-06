@@ -61,17 +61,6 @@ const MyProfile = () => {
                   <div className="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
                     <div className="user-profile-info">
                       <h4>{profile?.username}</h4>
-                      <ul className="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-2">
-                        <li className="list-inline-item fw-semibold">
-                          <i className="bx bx-pen"></i> تعداد آزمون های شرکت کرده
-                        </li>
-                        <li className="list-inline-item fw-semibold">
-                          <i className="bx bx-map"></i> مجموع امتیاز شما
-                        </li>
-                        <li className="list-inline-item fw-semibold">
-                          <i className="bx bx-calendar-alt"></i> بهترین نتیجه شما تا کنون
-                        </li>
-                      </ul>
                     </div>
                   </div>
                 </div>
